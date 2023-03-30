@@ -1,0 +1,76 @@
+0 - Materials
+- Raspberry Pi(we used RPi3b)
+- DHT-11 shield
+- Some pc to conecct to Raspiberry
+
+1 - Best Pracices
+- Create you own notes.
+- Create and update your github or gitlab repository.
+
+2 - Github
+git init
+git add *
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/alexandrelobiancosantos/RaspberryPiFullCycle.git
+git push -u origin main
+
+1 - Set UP the sd card 
+- Formating Sd card
+- Dowload and install Raspberry Pi Imager 
+    - https://www.raspberrypi.com/software/
+- Choose OS:
+    - RASPBERRY PI OS LITE (LEGACY) -Debian Buster whit secuity updates and no 
+    destop enviroment 2023-02-21
+- Choose your sd card
+- Click on configure whell and configure:
+    - Your SSH, username(RPi) and passwords(raspberry) [*]
+    - Your local settings
+- Click on write and wait to finish
+
+2- Booting and login your Raspberry Pi
+- Remove the sd card and plug to Raspberry Pi
+- Plug the network cable
+- Plug the power cabe and whait a fell seconds
+- Download advanced IP scaner
+    - https://www.advanced-ip-scanner.com/br/download/
+    - Click and chose your language
+    - Chose execute
+    - find the raspberry's IP
+- Use Putty for login
+    - Insert IP
+    - Acept the woarnig on terminal
+    - Insert user and password [*]
+
+3 - Configure root login
+~ $ sudo nano /etc/ssh/sshd_config
+uncomend and edit this line: 
+#PermitRootLogin Proibited
+to 
+PermitRootLogin yes
+save and exit
+~ $ sudo /etc/init.d/ssh restart
+~ $ passwd root ##########
+exit and login as root
+
+4 - Update
+# apt-get update
+# apt-get upgrade -Y
+
+5 - raspi-configure
+# raspi-config
+- Update -> ok
+- System Optinons -> Configure your LAN -> Wireless LAN -> SSID and password -> ok
+- Performance Optinons -> GPU Memory -> 16 -> ok
+- Advanced Optinons -> Expand Filesystem -> ok
+- Exit
+# reboot now
+
+6 - Backup your sd card
+# shutdown now
+- Remove the SD card
+- Use win32 disk Imager
+- Chose a name of the image like: RaspberryPi_FullCycle_SO_Configured_Mar03_2023.img
+Click on Read and wait a few minu- tes
+
+7-
