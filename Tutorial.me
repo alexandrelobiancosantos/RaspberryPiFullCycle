@@ -1,6 +1,6 @@
 0 - Materials
 - Raspberry Pi(we used RPi3b)
-- DHT-11 shield
+- DHT-11 Shield(other will be included on the fly)
 - Some pc to conecct to Raspiberry
 
 1 - Best Pracices
@@ -45,12 +45,12 @@ git push -u origin main
 3 - Configure root login
 ~ $ sudo nano /etc/ssh/sshd_config
 uncomend and edit this line: 
-#PermitRootLogin Proibited
+#PermitRootLogin prohibit-password
 to 
 PermitRootLogin yes
 save and exit
 ~ $ sudo /etc/init.d/ssh restart
-~ $ passwd root ##########
+~ $ sudo passwd root ##########
 exit and login as root
 
 4 - Update
@@ -71,6 +71,38 @@ exit and login as root
 - Remove the SD card
 - Use win32 disk Imager
 - Chose a name of the image like: RaspberryPi_FullCycle_SO_Configured_Mar03_2023.img
-Click on Read and wait a few minu- tes
+- Click on Read and wait a few minutes.
+- Plug the sd card to raspberry and start
 
-7-
+7 - Install Pyton3.10 in the right way
+$ sudo apt-get update
+$ sudo apt-get upgrade -y
+$ sudo apt-get install build-essential
+$ sudo apt-get install libncurses5-dev libncursesw5-dev libreadline6-dev libffi-dev -y
+$ sudo apt-get install libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libsqlite3-dev libgdbm-dev tk8.5-dev libssl-dev openssl -y
+$ sudo apt-get install libboost-python-dev -y
+$ sudo apt-get install libpulse-dev -y
+$ mkdir python-source
+$ cd python-source
+$ wget https://www.python.org/ftp/python/3.10.10/Python-3.10.10.tgz
+$ tar zxvf Python-3.10.10.tgz
+$ cd Python-3.10.10
+$ ./configure --prefix=/usr/local/opt/python-3.10.10 --enable-optimizations
+$ ./configure 
+$ make
+$ sudo make install
+$ /usr/local/opt/python-3.10.10/bin/python3.10 --version
+$ sudo alias python=python3
+$ sudo source ~/.bashrc
+
+outras referencias em:
+https://gist.github.com/luizomf/1fe6c67f307fc1df19e58f224134dc8f
+
+8 - Install Pyton venv
+$ sudo su
+# cd~
+# mkdir app
+# cd app
+# pip3 install pip setuptools wheel --upgrade
+# python3 -m venv venv
+# . venv/bin/activate
