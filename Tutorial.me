@@ -1,3 +1,11 @@
+
+Nota inicial sobre meu ambiente de desenvolvimnto.
+Tenho dois raspberrys. Um para desenvolvimento e um para produção.
+
+Para desenvolver essa é a opção mais confortável e que mais se asemelha ao ambiente profissional, onde um servidor roda a aplicação e existe um ambiente isolado para desenvolver e melhorar a aplicação que esta em produção. 
+
+Eu preciso desses ambientes pois estou fazendo testes com o sistema. Para seguir esse tutorial
+
 0 - Materials
 - Raspberry Pi(we used RPi3b)
 - DHT-11 Shield(other will be included on the fly)
@@ -28,6 +36,10 @@ git push -u origin main
     - Your local settings
 - Click on write and wait to finish
 
+
+RPiFC_A - development
+RPiFC_B - Production
+
 2- Booting and login your Raspberry Pi
 - Remove the sd card and plug to Raspberry Pi
 - Plug the network cable
@@ -39,12 +51,12 @@ git push -u origin main
     - find the raspberry's IP
 - Use Putty for login
     - Insert IP
-    - Acept the woarnig on terminal
+    - Acept the warnig on terminal
     - Insert user and password [*]
 
 3 - Configure root login
 ~ $ sudo nano /etc/ssh/sshd_config
-uncomend and edit this line: 
+uncomend and edit this line:
 #PermitRootLogin prohibit-password
 to 
 PermitRootLogin yes
@@ -53,9 +65,12 @@ save and exit
 ~ $ sudo passwd root ##########
 exit and login as root
 
+RPiFC_A - ******
+RPiFC_B - ******
+
 4 - Update
 # apt-get update
-# apt-get upgrade -Y
+# apt-get upgrade -y
 
 5 - raspi-configure
 # raspi-config
@@ -74,35 +89,95 @@ exit and login as root
 - Click on Read and wait a few minutes.
 - Plug the sd card to raspberry and start
 
-7 - Install Pyton3.10 in the right way
-$ sudo apt-get update
-$ sudo apt-get upgrade -y
-$ sudo apt-get install build-essential
-$ sudo apt-get install libncurses5-dev libncursesw5-dev libreadline6-dev libffi-dev -y
-$ sudo apt-get install libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libsqlite3-dev libgdbm-dev tk8.5-dev libssl-dev openssl -y
-$ sudo apt-get install libboost-python-dev -y
-$ sudo apt-get install libpulse-dev -y
-$ mkdir python-source
-$ cd python-source
-$ wget https://www.python.org/ftp/python/3.10.10/Python-3.10.10.tgz
-$ tar zxvf Python-3.10.10.tgz
-$ cd Python-3.10.10
-$ ./configure --prefix=/usr/local/opt/python-3.10.10 --enable-optimizations
-$ ./configure 
-$ make
-$ sudo make install
-$ /usr/local/opt/python-3.10.10/bin/python3.10 --version
-$ sudo alias python=python3
-$ sudo source ~/.bashrc
+7 - Requirements for complile python3.10
 
-outras referencias em:
-https://gist.github.com/luizomf/1fe6c67f307fc1df19e58f224134dc8f
+You need some development packages that provide header files and necessary libraries for compiling and linking Python programs on Linux systems. Here is a brief description of each:
 
-8 - Install Pyton venv
-$ sudo su
-# cd~
-# mkdir app
-# cd app
-# pip3 install pip setuptools wheel --upgrade
-# python3 -m venv venv
+build-essential: provides the basic set of system building and compilation tools, including the C++ compiler.
+libreadline-dev: provides the readline library for handling interactive input on the terminal.
+libncursesw5-dev: provides the ncursesw library for handling text-based user interfaces.
+libssl-dev: provides the OpenSSL library for encryption and security support.
+libsqlite3-dev: provides the SQLite library for database support.
+tk-dev: provides the Tkinter library for graphical user interface (GUI) support.
+libgdbm-dev: provides the GDBM library for database support.
+libc6-dev: provides the standard C library.
+libbz2-dev: provides the Bzip2 library for data compression.
+libffi-dev: provides the FFI (Foreign Function Interface) library for supporting function calls from other languages.
+zlib1g-dev: provides the zlib library for data compression.
+
+so run:
+# apt-get install wget build-essential libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev -y
+
+8- Instaling Python3.10.10
+
+# wget -c https://www.python.org/ftp/python/3.10.10/Python-3.10.10.tar.xz
+# tar -Jxvf Python-3.10.10.tar.xz
+# cd Python-3.10.10
+# ./configure --enable-optimizations
+
+After the successful compilation, you will get the following output:
+checking for --disable-test-modules... no
+configure: creating ./config.status
+config.status: creating Makefile.pre
+config.status: creating Misc/python.pc
+config.status: creating Misc/python-embed.pc
+config.status: creating Misc/python-config.sh
+config.status: creating Modules/ld_so_aix
+config.status: creating pyconfig.h
+creating Modules/Setup.local
+creating Makefile
+
+# make altinstall
+# python3.10 --version
+
+You will get the Python version in the following output:
+Python 3.10.10
+
+To set Python 3.10.10 as default:
+# update-alternatives --install /usr/bin/python python /usr/local/bin/python3.10 1
+# update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.10 1
+
+# python --version
+
+You will get the following output:
+Python 3.10.0
+
+https://www.rosehosting.com/blog/how-to-install-python-3-10-on-debian-11/
+
+
+9 - Install Pyton venv
+# pip install pip setuptools wheel --upgrade
+
+10 - Creating the development enviroment
+# mkdir app1
+# cd app1
+# python -m venv venv
 # . venv/bin/activate
+
+11 - Instaling Django
+
+# pip install --upgrade pip
+# pip install django
+
+12 - Ceating a project named app1
+
+# django-admin startproject app1 .
+
+13 - Testing
+
+cd app1
+nano settings.py
+
+edit the line 
+ALLOWED_HOSTS = []
+
+To
+ALLOWED_HOSTS = ['*'] # 
+
+
+cd..
+python manage.py runserver 0.0.0.0:8000
+
+on the browser type
+'MyRaspberryIp':8000
+Tha django start page shoud load
