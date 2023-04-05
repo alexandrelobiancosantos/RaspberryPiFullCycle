@@ -181,3 +181,28 @@ python manage.py runserver 0.0.0.0:8000
 on the browser type
 'MyRaspberryIp':8000
 Tha django start page shoud load
+
+
+14 - Adafriut
+
+# apt-get install libgpiod-dev
+
+
+iniciar venv
+
+pip install rpi.gpio==0.7.1
+pip install gpiozero==1.6.2
+git clone https://github.com/adafruit/Adafruit_CircuitPython_DHT.git
+pip install wheel
+pip install adafruit-circuitpython-dht
+
+cd Adafruit_CircuitPython_DHT/example
+nano dht_simpletest.py
+
+editar para o tipo de sensor e pino. No meu caso DHT11 e D23:
+
+dhtDevice = adafruit_dht.DHT11(board.D23)
+
+
+15 - sqlite3
+
