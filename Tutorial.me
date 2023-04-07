@@ -191,9 +191,10 @@ Tha django start page shoud load
 # python -m venv .
 # . bin/activate
 
+# pip install wheel
 # pip install rpi.gpio==0.7.1
 # git clone https://github.com/adafruit/Adafruit_CircuitPython_DHT.git
-# pip install wheel
+
 # pip install adafruit-circuitpython-dht
 # cd Adafruit_CircuitPython_DHT/example
 # nano dht_simpletest.py
@@ -202,6 +203,32 @@ editar para o tipo de sensor e pino. No meu caso DHT11 e D17:
 
 dhtDevice = adafruit_dht.DHT11(board.D17)
 
+Fim dos testes e inicio do projeto
+15 - Inicio do projeto
 
-15 - sqlite3
 
+
+Criar diretorio de projeto 'lab_app'
+#  mkdir lab_app && cd lab_app
+Criar ambiente virtual
+# python -m venv .
+Ativando o ambiente virtual
+# . bin/activate
+Instalar as bibliotecas necessarias ao projeto
+# pip install --upgrade pip
+# pip install wheel --upgrade
+# pip install rpi.gpio==0.7.1
+# pip install adafruit-circuitpython-dht
+# git clone https://github.com/adafruit/Adafruit_CircuitPython_DHT.git
+# pip install django
+Criar projeto 'lab'
+# django-admin startproject lab .
+Editar settings para permitir acesso de outro ambiente
+cd lab && nano settings.py
+ALLOWED_HOSTS = ['*']
+# cd ..
+# python manage.py runserver 0.0.0.0:8000
+
+Abrir pagina do Django no navegador e testar acesso a pagina incial do Django
+
+parei no inicio da aula 22. Vamos iniciar a criação de um app
