@@ -38,7 +38,7 @@ References
 https://app.techexplorations.com/courses/raspberry-pi-full-stack-raspbian/
 
 
-hire-me: https://www.linkedin.com/in/alexandre-lo-bianco-dos-santos-9541b6250/
+<h2>Hire-me: https://www.linkedin.com/in/alexandre-lo-bianco-dos-santos-9541b6250/</h2>
 
 
 
