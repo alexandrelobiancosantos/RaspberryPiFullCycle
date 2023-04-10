@@ -4,8 +4,25 @@
 
 <h5> Overview </h5>
 <h5> Setup System </h5>
+RPi base conf
+Python
+Python venv
+
 <h5> Django </h5>
+project:lab -> create project
+lab/settings.py -> allow remote acess (ALLOWED_HOSTS = ['*'])
+
+app:dht11 -> create app
+lab/urls.py -> path to app  e import include
+lab/setings.py -> include app
+dht11/urls.py -> create urls.py
+dht11/views.py -> create functions to render html files
+dht11/templates/dht11/index.html -> html files
+
 <h5> Django - Frontend: Basic </h5>
+index.html
+
+
 <h5> Django - Backend: Basic </h5>
 
 To Do
