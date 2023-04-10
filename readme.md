@@ -1,8 +1,22 @@
-<h1> Raspberry Pi Full Cycle </h1>
+<h1> Raspberry Pi Full Cycle with Django and AWS</h1>
 
 <h2> Setup the System </h2>
 
+<h5> Overview </h5>
+<h5> Setup System </h5>
+<h5> Django </h5>
+<h5> Django - Frontend: Basic </h5>
+<h5> Django - Backend: Basic </h5>
 
+To Do
+<h6> Django - Frontend: Creating a beautifull Dashbord with AI </h6>
+<h6> Django - Frontend:  </h6>
+<h6> Django - Frontend:  </h6>
+<h6> Django - Frontend:  </h6>
+<h6> Django - Frontend:  </h6>
+<h6> Django - Frontend:  </h6>
+<h5> Django - Backend: RDS </h5>
+<h5> Django - Backend: EC2 </h5>
 
 This repository contains the complete code and the steps to implements the project Raspberry Pi Full Cycle(RPiFC).
 
