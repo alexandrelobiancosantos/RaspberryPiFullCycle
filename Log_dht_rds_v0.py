@@ -1,11 +1,12 @@
 from datetime import datetime
 
 import Adafruit_DHT
-import MySQLdb
+
+#  import MySQLdb
 
 # Configurações do sensor DHT11
 DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 4
+DHT_PIN = D17
 
 # Configurações do banco de dados MySQL
 DB_HOST = 'localhost'
@@ -20,7 +21,7 @@ def ler_sensor():
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
     return humidity, temperature
 
-
+'''
 # Função para salvar os dados no banco de dados MySQL
 def salvar_no_banco(humidity, temperature, medida_realizada):
     conn = MySQLdb.connect(host=DB_HOST, user=DB_USER, passwd=DB_PASSWORD, db=DB_DBNAME)
@@ -35,7 +36,7 @@ def salvar_no_banco(humidity, temperature, medida_realizada):
 
     conn.commit()
     cursor.close()
-    conn.close()
+    conn.close()'''
 
 
 # Função para realizar a interpolação
@@ -56,7 +57,8 @@ def main():
     humidity, temperature = ler_sensor()
 
     if humidity is not None and temperature is not None:
-        salvar_no_banco(humidity, temperature, True)
+        print(humidity, temperature,)
+        #  salvar_no_banco(humidity, temperature, True)
     else:
         humidity = temperature = None
         salvar_no_banco(humidity, temperature, False)
@@ -70,10 +72,10 @@ def main():
 
         dados_humidity = interpolar_dados(dados_humidity)
         dados_temperature = interpolar_dados(dados_temperature)
-
+        '''
         for i in range(intervalos):
             salvar_no_banco(dados_humidity[i], dados_temperature[i], True)
-    print("Leitura do sensor concluída e dados salvos no banco de dados.")
+    print("Leitura do sensor concluída e dados salvos no banco de dados.")'''
 
 
 if __name__ == '__main__':
