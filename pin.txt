@@ -1,0 +1,10 @@
+DHT11 humidity and temperature
+vcc 3v - 1  -  
+gnd    - 9  -
+data   - 11 - gpio17  
+
+MH Z19B
+vcc 3v - 6  -  
+gnd    - 6  - 
+tx     - 8 
+rx     - 10
